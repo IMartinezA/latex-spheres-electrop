@@ -1,0 +1,261 @@
+\documentclass[]{article}%draft
+
+%%% Paquetes
+
+\usepackage[utf8]{inputenc} %Para el encoding
+%\usepackage[spanish]{babel}	%Para que entienda caracteres en español
+\usepackage{csquotes}		%Para las comillas
+
+\usepackage{amsfonts} 	%Para las letras \mathbb{}
+\usepackage{amsmath} 	% Me deja poner los &
+\usepackage{amssymb}	%Para los backslash
+\usepackage{bbm}		%Para numeros mathbb
+\usepackage{amsthm}		%Para tener el environment para las demostraciones
+
+\usepackage{graphicx}	%Para im\'agenes
+\graphicspath{ {Im/} }	%Ruta para las im\'agenes
+\usepackage{subfig}		%Para tener m\'ultiples im\'agenes
+\usepackage{float}		%Para tener el comando que deja las im\'agenes HERE
+\usepackage{placeins}	%Para tener el comando float barrier
+
+\usepackage{booktabs}	%Para l\'ineas en las tablas
+
+\usepackage[]{algorithmic}		%Para los algoritmos
+\usepackage[Algoritmo]{algorithm}	%Para los algoritmos
+\usepackage{listings}	%Para escribir c\'odigo
+
+\usepackage{geometry}	%Para cambiar margenes del papel (no espaciados y esas cosas)
+
+\usepackage{color}		%Para poder usar colores
+%Algunos colores
+%\textcolor{blue}{hola}
+%\textcolor{cyan}{hola}
+%\textcolor{green}{hola}
+%\textcolor{magenta}{hola}
+%\textcolor{red}{hola}
+%\textcolor{yellow}{hola}
+
+\usepackage{hyperref}	%Para los links internos
+
+\hypersetup{
+colorlinks=true,
+linktoc=all,
+linkcolor=blue,
+}
+
+%Para el formato de theorema
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{assumption}[theorem]{Assumption}
+%%%T\'itulo y esas cosas
+
+\title{Electro-permeabilization + spheres.}
+
+\date{\today .}
+
+
+%%%%
+%Comienza el documento
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction.}
+
+\textcolor{red}{- Electropermeabilization, mathematical models, ejemplos, comentarios, comparaciones.}
+
+\textcolor{red}{-Agregar las referencias en un .bib}
+
+\section{Problem.}
+
+\subsection{Geometry.}
+
+\textcolor{}{- Geometr\'ia total, ¿acotada o no acotada? -> depende de lo que se haga en la parte de homogeneizaci\'on.}
+
+\textcolor{red}{- Each sphere represents a cell.}
+
+\textcolor{red}{- Dibujo pendiente.}
+
+We consider $N$ disjoint spheres in $\mathbb{R}^3$. The position vectors of their centers and their radius are $\mathbf{p_j} \in \mathbb{R}^3$ and $\tilde{r}_j\in \mathbb{R}^+$, respectively, with $j \in \{1,...,N\}$. With them, we define the interior of a sphere $j$ as $\Omega_j:=\{ \mathbf{x} \in \mathbb{R}^3:||\mathbf{x}-\mathbf{p_j}||_2<\tilde{r}_j \}$, and its boundary as $\Gamma_j:=\partial \Omega_j$. The surrounding medium, $\Omega_0$, is defined as $\mathbb{R}^3$ without the spheres and their boundaries.
+
+\subsection{Mathematical model.}
+
+\textcolor{red}{-Agregar las referencias en un .bib}
+
+- Quasi-static regime.
+
+- Non-linear behaviour in the membrane (examples in references).
+
+- $u_0: \Omega_0 \rightarrow \mathbb{C}$ extracellular potential in $\Omega_0$,
+
+- $u_j: \Omega_j \rightarrow \mathbb{C}$ intracellular potential in $\Omega_j$, for $j\in \{1,...,N\}$ (inside each cell).
+
+\textcolor{red}{- Escribir ecuaciones}
+
+\subsubsection{Boundary integral operators.}
+\textcolor{red}{- (Arreglar el desastre del espaciado, la redacci\'on, etc)}
+
+\textcolor{red}{-Agregar las referencias en un .bib}
+
+- Fundamental solution $$g\left(\mathbf{r},\mathbf{r'}\right):= \frac{1}{4\pi |\mathbf{r}-\mathbf{r'}|}, \quad \mbox{with } \mathbf{r}\not = \mathbf{r'}, \quad \mbox{and } -\Delta g\left(\mathbf{r},\mathbf{r'}\right)=\delta \left(\mathbf{r}-\mathbf{r'}\right).$$
+
+With the fundamental solution, we define the single and double layer operators (Boundary Element Methods, Sauter y Schwab, 2011, Section 3.1.), (Acoustic and electromagnetic equations, Nedelec, Section 3.1)
+$SL_{0j}: H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^1_{loc}(\Omega_0)$,
+$SL_{j}: H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^1_{loc}(\Omega_j)$,
+$DL_{0j}: H^{\frac{1}{2}}(\Gamma_j) \rightarrow H^1_{loc}(\Omega_0)$,
+$DL_{j}: H^{\frac{1}{2}}(\Gamma_j)\rightarrow H^1_{loc}(\Omega_j)$, wich are linear and continuous, as:
+
+$$DL_{0j} \left(\psi\right)\left(\mathbf{r}\right):=	\int_{\Gamma_j}  \psi\left(\mathbf{r}'\right) \gamma_{N{\mathbf{r}'}}^{0j} \left(g_0\right)\left(\mathbf{r},\mathbf{r'}\right) dS',$$
+ 
+ $$SL_{0j} \left(\psi\right)\left(\mathbf{r}\right):=	\int_{\Gamma_j}  {\psi\left(\mathbf{r}'\right) \gamma_{D\mathbf{r}'}^{0j}\left(g_0\right)\left(\mathbf{r},\mathbf{r'}\right) dS'},$$
+ 
+ $$DL_j \left(\psi\right)\left(\mathbf{r}\right):=	\int_{\Gamma_j}  {\psi\left(\mathbf{r}'\right) \gamma_{N{\mathbf{r}'}}^{j} \left(g_j\right)\left(\mathbf{r},\mathbf{r'}\right) dS'},$$ 
+ $$SL_j \left(\psi\right)\left(\mathbf{r}\right):=	\int_{\Gamma_j}  {\psi\left(\mathbf{r}' \right) \gamma_{D\mathbf{r}'}^{j}\left(g_j\right)\left(\mathbf{r},\mathbf{r'}\right) dS'},$$
+ 
+with the traces of the fundamental solution taken with respect to $\mathbf{r}'$.
+
+Now, we introduce the boundary integral operators (Boundary Element Methods, Sauter y Schwab, 2011, Section 3.1.2.)
+
+$$ V_{s,j}^0 : H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^{\frac{1}{2}}(\Gamma_s),$$
+$$ V_{j}: H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^{\frac{1}{2}}(\Gamma_j),$$
+ $$W_{s,j}^0: H^{\frac{1}{2}}(\Gamma_j) \rightarrow H^{-\frac{1}{2}}(\Gamma_s),$$
+ $$W_{j}: H^{\frac{1}{2}}(\Gamma_j) \rightarrow H^{-\frac{1}{2}}(\Gamma_j) ,$$
+$$ K_{s,j}^0: H^{\frac{1}{2}}(\Gamma_j) \rightarrow H^{\frac{1}{2}}(\Gamma_s),$$
+ $$K_{j}: H^{\frac{1}{2}}(\Gamma_j) \rightarrow H^{\frac{1}{2}}(\Gamma_j) ,$$
+ $$K^{*0}_{s,j}: H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^{-\frac{1}{2}}(\Gamma_s),$$
+ $$K^*_{j}: H^{-\frac{1}{2}}(\Gamma_j) \rightarrow H^{-\frac{1}{2}}(\Gamma_j),$$
+ 
+\begin{align*}
+ V_{s,j}^0 &=   \gamma_D^{0s} SL_{0j},
+ & V_{j}&=  \gamma_D^{j} SL_{j},\\
+ W_{s,j}^0 &=-  \gamma_N^{0s} DL_{0j},
+ & W_{j} &=- \gamma_N^{j} DL_{j}, \\
+ K_{s,j}^0&= \gamma_D^{0s} DL_{0j}\mbox{ with } s \not=j,
+ & K^{*0}_{s,j} &= \gamma_N ^{0s} SL_{0j}\mbox{ with } s \not=j.\\
+\end{align*}
+
+We note here that $W_{j,j}^0$ and $W_{j}$ are hypersingular and defined in the Hadamard finite part sense.
+
+For this geometry, the operators $K_{j,j}^0$, $K^{*0}_{j,j}$, $K_{j}$, $K^*_{j}$ satisfy:
+
+\begin{align*}
+ K_{j,j}^0(\psi) &= \frac{1}{2}\psi + \int_{\Gamma_j}  \psi\left(\mathbf{r}'\right) \gamma_{D\mathbf{r}}^{0j} \left( \gamma_{N{\mathbf{r}'}}^{0j} \left(g_0\right)\left(\mathbf{r},\mathbf{r'}\right) \right) dS',\\ 
+ K_{j}(\psi) &= \frac{1}{2} \psi +\int_{\Gamma_j}  {\psi\left(\mathbf{r}'\right) \gamma_{D\mathbf{r}}^{j} \left(\gamma_{N{\mathbf{r}'}}^{j} \left(g_j\right)\left(\mathbf{r},\mathbf{r'}\right) \right) dS'},\\
+ K^{*0}_{j,j}(\psi) &= -\frac{1}{2} \psi + \int_{\Gamma_j}  {\psi\left(\mathbf{r}'\right) \gamma_{N\mathbf{r}}^{0j}\left(\gamma_{D\mathbf{r}'}^{0j}\left(g_0\right)\left(\mathbf{r},\mathbf{r'}\right)\right) dS'},\\
+ K^*_{j}(\psi) &= -\frac{1}{2} \psi + \int_{\Gamma_j}  {\psi\left(\mathbf{r}' \right) \gamma_{N\mathbf{r}}^j\left(\gamma_{D\mathbf{r}'}^{j}\left(g_j\right)\left(\mathbf{r},\mathbf{r'}\right)\right) dS'}.
+\end{align*}
+
+\subsubsection{Hacia el MTF}
+
+The Green's representation formula allows us to write $u_j$ with the single and double layer operators:
+ 
+$$u_0= - \sum_{j=1}^N DL_{0j} \left(\gamma_D^{0j} (u_0)\right) + \sum_{j=1}^N SL_{0j} \left(\gamma_{N}^{0j} \left(u_0\right)\right) ,$$\\
+
+$$u_j=	-DL_j \left(\gamma_D^{j} \left(u_j\right)\right) +SL_j \left(\gamma_{N}^{j} \left(u_j\right) \right), \quad \forall j\in \{1, ..., N \}.$$
+
+\textcolor{red}{- Citar paper de Fernando}
+
+
+\section{Discretization.}
+
+\subsection{Space discretization.}
+
+We use a spectral discretization with spherical harmonics to discretize the traces.
+
+We write a vector in spherical coordinates as $\mathbf{r}=\left(r,\varphi,\theta\right)^t$, with $r \in [0,\infty)$, $\varphi \in [0,2\pi)$ and $\theta \in [0,\pi]$, which is equivalent to $\mathbf{r}=r\left(\sin \left(\theta\right) \cos \left(\varphi\right),\sin \left(\theta\right) \sin \left(\varphi\right),\cos \left(\theta\right)\right)^t$ in Cartesian coordinates.
+
+We use the spherical harmonics of degree $l$ and order $m$ \textcolor{red}{(Pasar en limpio la referencia)}: 
+
+\begin{align}
+ Y_{l,m}\left(\theta,\varphi\right) &:= \sqrt{ \frac{\left(2l+1\right)\left(l-m\right)!}{4 \pi \left(l+m\right)!}} P_l^{m} \left(\cos\left(\theta\right)\right) e^{i m \varphi}, \mbox{ and}  \\
+ Y_{l,-m}\left(\theta,\varphi\right) &:= (-1)^m\overline{Y}_{l,m}\left(\theta,\varphi\right), 
+\end{align}
+
+with $l\in \mathbb{N}_0$, $m\in \mathbb{Z}$ such that $0\leq m\leq l$, and $P_l^m$ the associated Legendre polynomials of degree $l$ and  order $m$ defined as:
+
+ $$P_{l}^m\left(x\right) := (-1)^m \left( 1- x^2\right)^{\frac{m}{2}} \frac{d^m}{dx^m}P_l(x), \quad \mbox{with} \quad P_{l}\left(x\right) := \frac{1}{2^ll!}\frac{d^l}{dx^l}(x^2-1)^l.$$
+
+It must be noted that we are using the the Condon-Shortley phase convention on the definition of the associated Legendre polynomials.
+
+We use a spectral discretization with spherical harmonics to discretize the unknowns.
+
+\begin{theorem}
+(\cite[Section 2.8]{AtkinsonHan2012}, \cite[Theorem 2.4.4]{Nedelec2001}, \cite[Section 2.3]{ColtonKress2013a}.)
+
+Spherical harmonics are dense in $C(\mathcal{S}^2)$, with $\mathcal{S}^2$ the surface of the unit sphere, and form a complete orthonormal system in $L^2(\mathcal{S}^2)$ with respect to the internal product defined by:
+
+\begin{equation}
+\left( \psi , \xi \right)_{L^2(\mathcal{S}^2)} = \int_{0}^{2\pi}\int_{0}^{\pi} \psi\left(\theta,\varphi\right) \overline{\xi\left(\theta,\varphi\right)} \sin\left(\theta\right) d\theta d\varphi,
+\end{equation}
+
+where $\overline{\xi\left(\theta,\varphi\right)}$ is the conjugate of $\xi\left(\theta,\varphi\right)$. They also are orthogonal in $H^1(\mathcal{S}^2)$.
+\end{theorem}
+
+Let be $j\in \{1,...,N\}$. We define the reference system $j$ as the reference system centered in $\mathbf{p_j}$ with the same orientation that the reference system centered in the origin, and we denote as $Y_{l,m,j}$ the spherical harmonic $Y_{l,m}$ centered in the origin of the reference system $j$. If $\mathbf{r}$ is a vector, we denote as $\mathbf{r_j}$ the vector  written in the reference system $j$. Then, if $\left( r_j, \varphi_j, \theta_j \right)$ are the spherical coordinates of $\mathbf{r_j}$, we have $Y_{l,m,j}\left(\mathbf{r}\right)=Y_{l,m}\left(\theta_j, \varphi_j\right)$.
+
+For $L \in \mathbb{N}_0$, we define the subspaces $\mathcal{Y}_L\left(\Gamma_j \right):= \mbox{span}\left\lbrace Y_{l,m,j}: l \in \mathbb{N}_0, m \in \mathbb{Z}, l \leq L, |m|\leq l \right\rbrace$ for $j \in \lbrace 1, ... , N \rbrace $. The dimension of each subspace is $(L+1)^2$.
+
+\begin{proposition}\label{Gelfand}
+ (\cite[Proposition 2.5.2 and Section 2.1.2.4]{SauterSchwab2010}) The triple
+
+ $$H^{\frac{1}{2}}(\Gamma_j) \subset L^2(\Gamma_j) \subset H^{-\frac{1}{2}}(\Gamma_j) $$
+
+ is a Gelfand triple, i.e. the spaces are continuously and densenly embedded .
+
+ Therefore, the inner product $(\cdot, \cdot )_{L^2(\Gamma_j)} $ can be continuously extended to dual pairings on $H^{\frac{1}{2}}(\Gamma_j) \times H^{-\frac{1}{2}}(\Gamma_j)$ and $H^{-\frac{1}{2}}(\Gamma_j) \times H^{\frac{1}{2}}(\Gamma_j)$.
+\end{proposition}
+
+\begin{proposition}[Density]\label{density1}
+The sequence of subspaces $\lbrace \mathcal{Y}_L \left(\Gamma_j \right) \rbrace_{L \in \mathbb{N}_0} $ is dense in $H^{\frac{1}{2}}(\Gamma_j)$ and in $H^{-\frac{1}{2}}(\Gamma_j)$.
+\end{proposition}
+
+\begin{proof}
+The result follows from the density of spherical harmonics in the spaces of continuous functions \cite[Section 2.8]{AtkinsonHan2012} and proposition \ref{Gelfand}. \textcolor{magenta}{(Pendiente.)}
+\end{proof}
+
+We define $\mathbf{Y}_L^j:= \mathcal{Y}_L \left(\Gamma_j \right) \times \mathcal{Y}_L \left(\Gamma_j \right)$, and $ \mathbb{Y}_L:= \Pi_{j=1}^{N} \mathbf{Y_L^j} \times \Pi_{j=1}^{N} \mathbf{Y_j^j}$. Then, we have
+
+\begin{proposition}[]\label{density2}
+The sequence of subspaces $\lbrace \mathbb{Y}_L \left(\Gamma_j \right) \rbrace_{L \in \mathbb{N}_0} $ is dense in $\mathbb{V}$.
+\end{proposition}
+
+\begin{proof}
+The result follows directly from \ref{density1}
+\end{proof}
+
+For $j \in \lbrace 1, ..., N \rbrace$, let $\tilde{\lambda}_D^{0j}$, $\tilde{\lambda}_N^{0j}$, $\tilde{\lambda}_D^{j}$ and $\tilde{\lambda}_N^{j}$ in $\mathcal{Y}_L(\Gamma_j)$ be the approximations of $\gamma_D^{0j}\left(u_0\right)$, $\gamma_N^{0j}\left(u_0\right)$, $\gamma_D^{j}\left(u_j\right)$ and $\gamma_N^{j}\left(u_j\right)$, respectively.  They can be written as series expansions:
+
+\begin{subequations}
+\begin{align}
+\tilde{\lambda}_D^{0j}&=
+\sum_{l=0}^{L}  \sum_{m=-l}^l \lambda_{l,m}^{D0j}  Y_{l,m,j}, & \tilde{\lambda}_N^{0j}&=
+\sum_{l=0}^{L}  \sum_{m=-l}^l \lambda_{l,m}^{N0j}  Y_{l,m,j}, \label{tracediscretization1}\\
+\tilde{\lambda}_D^{j}&=
+\sum_{l=0}^{L}  \sum_{m=-l}^l \lambda_{l,m}^{Dj}  Y_{l,m,j},& \tilde{\lambda}_N^{j}&=
+\sum_{l=0}^{L}  \sum_{m=-l}^l \lambda_{l,m}^{Nj}  Y_{l,m,j}, \label{tracediscretization2}
+\end{align}
+\end{subequations}
+
+with $\lambda_{l,m}^{D0j}$, $\lambda_{l,m}^{N0j}$, $\lambda_{l,m}^{Dj}$ and $\lambda_{l,m}^{Nj}$ constants, $\forall j \in \{1, ..., N \}$.
+
+\subsection{Time discretization.}
+
+\section{¿modelo homogeneizado?}
+
+
+\section{References.}
+
+
+%\bibliographystyle{acm} 
+%\bibliography{BibliografiaElectroPermeabilizacion}
+
+
+\end{document}
